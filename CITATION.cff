@@ -1,0 +1,51 @@
+cff-version: 1.2.0
+message: "Si vous utilisez ce jeu de données ou ce protocole d'évaluation dans un mémoire, une thèse, un article scientifique ou une note d'aide au choix (CNRS, Universités, DSI, DPO), veuillez le citer comme indiqué ci-dessous."
+type: dataset
+title: "Benchmarks Officiels de Précision des IA de Transcription en Français (2026) — Corpus Canal-U & 60 Rapports de Suivi des Modifications Microsoft Word"
+abstract: "Benchmark ouvert et reproductible évaluant 11 solutions de reconnaissance vocale (ASR) en langue française (Le Scribe Audio, Gladia, noScribe / Whisper Large v3, Happy Scribe, TurboScribe, MacWhisper, ElevenLabs Scribe v2, Sonix, Speechmatics Ursa, AmberScript, Microsoft Word 365) à l'aide du comptage mécanique des révisions sous Microsoft Word (Révision > Comparer) face à une vérité terrain vérifiée intégralement à l'oreille, appuyé par 60 rapports PDF publics."
+authors:
+  - name: "LE SCRIBE AUDIO"
+    address: "Le Rheu / Rennes"
+    country: FR
+    email: "info@lescribeaudio.com"
+    tel: "+33 9 61 44 46 64"
+    website: "https://lescribeaudio.com"
+version: 1.0.0
+doi: 10.5281/zenodo.24087383
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24087383
+    description: "Version 1.0.0 DOI (Zenodo / CERN)"
+  - type: doi
+    value: 10.5281/zenodo.24087382
+    description: "Concept DOI toutes versions (Zenodo / CERN)"
+date-released: "2026-11-09"
+license: CC-BY-4.0
+url: "https://lescribeaudio.com/benchmarks-precision-transcription-ia-francais"
+keywords:
+  - transcription automatique
+  - reconnaissance vocale
+  - français
+  - benchmark ASR
+  - Whisper
+  - sciences humaines et sociales
+  - Canal-U
+references:
+  - type: web
+    title: "Benchmarks Officiels de Précision des IA de Transcription en Français (60 PDF)"
+    authors:
+      - name: "LE SCRIBE AUDIO"
+    year: 2026
+    url: "https://lescribeaudio.com/benchmarks-precision-transcription-ia-francais"
+  - type: web
+    title: "Comparatif et Tutoriel des Logiciels de Transcription Automatique en Français"
+    authors:
+      - name: "LE SCRIBE AUDIO"
+    year: 2026
+    url: "https://lescribeaudio.com/logiciels-transcription-automatique-tutoriel-comparatif"
+  - type: web
+    title: "Transcription Audio pour l'Enquête Qualitative en Sciences Humaines et Sociales"
+    authors:
+      - name: "LE SCRIBE AUDIO"
+    year: 2026
+    url: "https://lescribeaudio.com/transcription-audio-enquete-qualitative"

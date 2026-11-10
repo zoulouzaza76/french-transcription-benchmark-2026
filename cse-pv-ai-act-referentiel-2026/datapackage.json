@@ -1,0 +1,91 @@
+{
+  "profile": "tabular-data-package",
+  "name": "cse-pv-ai-act-referentiel-2026",
+  "title": "Référentiel Juridique & Opérationnel 2026 — Procès-Verbal de CSE, Enregistrement Audio (Art. D. 2315-27), Temps Réels de Rédaction et AI Act",
+  "description": "Jeu de données ouvert (CC-BY-4.0) consolidant les règles du Code du travail français (art. L. 2315-34, R. 2315-25, D. 2315-27, L. 2315-3, L. 2315-61, L. 2312-8, L. 2317-1), du Règlement européen sur l'IA 2024/1689 (AI Act, art. 5 et 50) et du RGPD (art. 5.1.e, 28, 32), ainsi que le baromètre des temps humains réels et budgets de rédaction d'un procès-verbal de CSE (frappe manuelle 4 à 7 h/h, pré-transcription IA 2 passes + réécoute intégrale 2 à 3 h/h divisant par 2 le temps de rédaction, et double relecture humaine à 60 € HT/h par deux transcripteurs successifs).",
+  "version": "1.0.0",
+  "created": "2026-11-09",
+  "homepage": "https://lescribeaudio.com/barometre-referentiel-pv-cse-enregistrement-ai-act-2026",
+  "keywords": [
+    "CSE",
+    "procès-verbal CSE",
+    "Code du travail",
+    "R2315-25",
+    "D2315-27",
+    "AI Act 2026",
+    "RGPD",
+    "transcription audio",
+    "droit social"
+  ],
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "title": "Creative Commons Attribution 4.0 International",
+      "path": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "contributors": [
+    {
+      "title": "LE SCRIBE AUDIO",
+      "role": "publisher",
+      "path": "https://lescribeaudio.com",
+      "email": "contact@lescribeaudio.com"
+    }
+  ],
+  "resources": [
+    {
+      "name": "referentiel-juridique-delais-pv-cse-2026",
+      "path": "dataset/referentiel_juridique_delais_pv_cse_2026.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "title": "Référentiel juridique des délais, enregistrements audio, RGPD et AI Act pour les PV de CSE (2026)",
+      "schema": {
+        "fields": [
+          { "name": "rule_id", "type": "string", "description": "Identifiant unique de la règle" },
+          { "name": "corpus_juridique", "type": "string", "description": "Texte normatif de référence (Code du travail, AI Act, RGPD)" },
+          { "name": "article_reference", "type": "string", "description": "Numéro exact de l'article" },
+          { "name": "intitule", "type": "string", "description": "Objet juridique de la règle" },
+          { "name": "delai_ou_seuil", "type": "string", "description": "Délai légal, seuil budgétaire ou montant de sanction" },
+          { "name": "acteur_responsable", "type": "string", "description": "Acteur légalement compétent ou assujetti" },
+          { "name": "obligation_legale", "type": "string", "description": "Synthèse fidèle de la règle de droit positif" },
+          { "name": "bonne_pratique_operationnelle_2026", "type": "string", "description": "Application opérationnelle conforme en séance de CSE" },
+          { "name": "url_guide_pratique", "type": "string", "format": "uri", "description": "Guide de référence approfondi sur lescribeaudio.com" }
+        ],
+        "primaryKey": "rule_id"
+      }
+    },
+    {
+      "name": "comparatif-temps-budgets-redaction-pv-cse-2026",
+      "path": "dataset/comparatif_temps_budgets_redaction_pv_cse_2026.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "title": "Comparatif des temps humains réels et budgets de rédaction d'un PV de CSE (2026)",
+      "schema": {
+        "fields": [
+          { "name": "method_id", "type": "string", "description": "Identifiant de la méthode de rédaction" },
+          { "name": "methode_redaction", "type": "string", "description": "Modalité technique et humaine d'établissement du PV" },
+          { "name": "profil_redacteur", "type": "string", "description": "Profil réalisant la saisie ou la réécoute" },
+          { "name": "temps_humain_min_h_par_1h_audio", "type": "number", "description": "Borne basse du temps humain requis (en heures) pour 1 h d'audio" },
+          { "name": "temps_humain_max_h_par_1h_audio", "type": "number", "description": "Borne haute du temps humain requis (en heures) pour 1 h d'audio" },
+          { "name": "temps_seance_3h_fourchette_h", "type": "string", "description": "Charge humaine totale estimée pour une réunion plénière de 3 heures" },
+          { "name": "gain_temps_vs_frappe_manuelle", "type": "string", "description": "Gain de temps observé par rapport à la frappe manuelle au casque" },
+          { "name": "tarif_externe_ht_par_heure_audio_eur", "type": "number", "description": "Coût externe indicatif HT en euros par heure d'enregistrement" },
+          { "name": "imputation_budget_aep_0_2_pct", "type": "string", "description": "Éligibilité au budget de fonctionnement (AEP 0,2 %) du CSE" },
+          { "name": "livrable_et_protocole", "type": "string", "description": "Description exacte du livrable Word (.docx) et du protocole" }
+        ],
+        "primaryKey": "method_id"
+      }
+    },
+    {
+      "name": "infographie-pv-cse-ai-act-2026",
+      "path": "infographie-pv-cse-ai-act-2026.svg",
+      "format": "svg",
+      "mediatype": "image/svg+xml",
+      "title": "Infographie vectorielle accessible (1200x675) — Référentiel PV de CSE & AI Act 2026 (CC-BY-4.0)"
+    }
+  ]
+}

@@ -1,0 +1,255 @@
+{
+  "profile": "tabular-data-package",
+  "name": "french-transcription-benchmark-2026",
+  "title": "Benchmarks Officiels de Précision des IA de Transcription en Français (2026) — Corpus Canal-U & 60 Preuves PDF Word",
+  "description": "Jeu de données ouvert mesurant objectivement le nombre de révisions humaines requises sous Microsoft Word (outil Révision > Comparer face à une vérité terrain vérifiée intégralement à l'oreille) pour 11 solutions de reconnaissance vocale et de transcription automatique en langue française sur des enregistrements scientifiques publics Canal-U (ARAPI, CNRS/CEA, Université de Tours/OFB, CNRS/C2RMF 1h16) et sur trois situations acoustiques professionnelles (entretien, réunion multi-locuteurs, conférence).",
+  "version": "1.0.0",
+  "created": "2026-10-31",
+  "homepage": "https://lescribeaudio.com/benchmarks-precision-transcription-ia-francais",
+  "keywords": [
+    "transcription automatique",
+    "reconnaissance vocale",
+    "speech-to-text",
+    "français",
+    "benchmark ASR",
+    "sciences humaines et sociales",
+    "diarisation",
+    "Canal-U",
+    "CNRS",
+    "suivi des modifications Word"
+  ],
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "title": "Creative Commons Attribution 4.0 International",
+      "path": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "contributors": [
+    {
+      "title": "LE SCRIBE AUDIO",
+      "role": "publisher",
+      "email": "info@lescribeaudio.com",
+      "path": "https://lescribeaudio.com"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Benchmarks Officiels de Précision des IA de Transcription en Français (60 PDF)",
+      "path": "https://lescribeaudio.com/benchmarks-precision-transcription-ia-francais"
+    },
+    {
+      "title": "Vidéothèque numérique de l'enseignement supérieur et de la recherche Canal-U",
+      "path": "https://www.canal-u.tv"
+    }
+  ],
+  "resources": [
+    {
+      "name": "benchmark-10-moteurs-canalu-2026",
+      "path": "dataset/benchmark_10_moteurs_canalu_2026.csv",
+      "profile": "tabular-data-resource",
+      "title": "Benchmark principal : 10 logiciels comparés sur 3 corpus scientifiques Canal-U (30 PDF)",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "primaryKey": "rank",
+        "fields": [
+          {
+            "name": "rank",
+            "type": "integer",
+            "description": "Classement selon le nombre moyen de révisions Word (du plus précis au moins précis)"
+          },
+          {
+            "name": "software",
+            "type": "string",
+            "description": "Nom commercial ou open-source du logiciel évalué"
+          },
+          {
+            "name": "engine_architecture",
+            "type": "string",
+            "description": "Architecture de reconnaissance vocale sous-jacente"
+          },
+          {
+            "name": "sample_1_medical_arapi_revisions",
+            "type": "integer",
+            "description": "Nombre de révisions Word mesurées sur l'échantillon 1 (Recherche médicale ARAPI / Canal-U)"
+          },
+          {
+            "name": "sample_2_physics_cnrs_cea_revisions",
+            "type": "integer",
+            "description": "Nombre de révisions Word mesurées sur l'échantillon 2 (Physique-Chimie CNRS / CEA / Canal-U)"
+          },
+          {
+            "name": "sample_3_ecology_univ_tours_revisions",
+            "type": "integer",
+            "description": "Nombre de révisions Word mesurées sur l'échantillon 3 (Hydrobiologie Univ. de Tours / OFB / Canal-U)"
+          },
+          {
+            "name": "mean_word_revisions",
+            "type": "number",
+            "description": "Moyenne arithmétique des révisions sur les 3 extraits scientifiques"
+          },
+          {
+            "name": "error_ratio_vs_leader",
+            "type": "number",
+            "description": "Ratio du volume de révisions par rapport au système classé 1er (1.00 = référence)"
+          },
+          {
+            "name": "pdf_proof_sample_1",
+            "type": "string",
+            "format": "uri",
+            "description": "URL publique du rapport PDF Microsoft Word (Révision > Comparer) pour l'échantillon 1"
+          },
+          {
+            "name": "pdf_proof_sample_2",
+            "type": "string",
+            "format": "uri",
+            "description": "URL publique du rapport PDF Microsoft Word (Révision > Comparer) pour l'échantillon 2"
+          },
+          {
+            "name": "pdf_proof_sample_3",
+            "type": "string",
+            "format": "uri",
+            "description": "URL publique du rapport PDF Microsoft Word (Révision > Comparer) pour l'échantillon 3"
+          }
+        ]
+      }
+    },
+    {
+      "name": "benchmark-longue-duree-cnrs-c2rmf-1h16",
+      "path": "dataset/benchmark_longue_duree_cnrs_c2rmf_1h16.csv",
+      "profile": "tabular-data-resource",
+      "title": "Étude de cas longue durée (1h16) sur entretien CNRS / C2RMF (3 PDF)",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "primaryKey": "rank",
+        "fields": [
+          {
+            "name": "rank",
+            "type": "integer",
+            "description": "Classement selon le nombre total de révisions Word sur l'entretien complet de 1h16"
+          },
+          {
+            "name": "software",
+            "type": "string",
+            "description": "Solution de transcription évaluée"
+          },
+          {
+            "name": "engine_architecture",
+            "type": "string",
+            "description": "Architecture technique et mode d'exécution"
+          },
+          {
+            "name": "corpus_source",
+            "type": "string",
+            "description": "Source publique de l'enregistrement audio"
+          },
+          {
+            "name": "audio_duration_minutes",
+            "type": "integer",
+            "description": "Durée de l'enregistrement audio en minutes"
+          },
+          {
+            "name": "processing_time_label",
+            "type": "string",
+            "description": "Temps total de calcul au format lisible (minutes et secondes)"
+          },
+          {
+            "name": "processing_time_seconds",
+            "type": "integer",
+            "description": "Temps total de calcul en secondes"
+          },
+          {
+            "name": "real_time_factor",
+            "type": "number",
+            "description": "Facteur temps réel (RTF = temps de calcul / durée audio)"
+          },
+          {
+            "name": "word_revisions_total",
+            "type": "integer",
+            "description": "Nombre total de révisions comptabilisées par Microsoft Word (insertions + suppressions)"
+          },
+          {
+            "name": "word_insertions",
+            "type": "integer",
+            "description": "Nombre d'insertions humaines requises sous Microsoft Word"
+          },
+          {
+            "name": "word_deletions",
+            "type": "integer",
+            "description": "Nombre de suppressions humaines requises sous Microsoft Word"
+          },
+          {
+            "name": "error_ratio_vs_leader",
+            "type": "number",
+            "description": "Ratio du volume de révisions par rapport au système classé 1er"
+          },
+          {
+            "name": "specialized_lexicon_observations",
+            "type": "string",
+            "description": "Observations qualitatives sur la restitution du lexique spécialisé et des accords"
+          },
+          {
+            "name": "pdf_proof_url",
+            "type": "string",
+            "format": "uri",
+            "description": "URL publique du rapport PDF complet généré par Microsoft Word"
+          }
+        ]
+      }
+    },
+    {
+      "name": "benchmark-situations-terrain-2026",
+      "path": "dataset/benchmark_situations_terrain_2026.csv",
+      "profile": "tabular-data-resource",
+      "title": "Inventaire des 27 rapports PDF complémentaires par situation acoustique (Entretien, Réunion, Conférence)",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "primaryKey": "id",
+        "fields": [
+          {
+            "name": "id",
+            "type": "integer",
+            "description": "Identifiant séquentiel du rapport PDF"
+          },
+          {
+            "name": "software",
+            "type": "string",
+            "description": "Logiciel de transcription évalué"
+          },
+          {
+            "name": "engine_architecture",
+            "type": "string",
+            "description": "Architecture technique du moteur ASR"
+          },
+          {
+            "name": "acoustic_scenario",
+            "type": "string",
+            "description": "Code normalisé de la situation acoustique (entretien, reunion, conference)"
+          },
+          {
+            "name": "scenario_label_fr",
+            "type": "string",
+            "description": "Intitulé français de la situation acoustique"
+          },
+          {
+            "name": "filename",
+            "type": "string",
+            "description": "Nom du fichier PDF d'archive"
+          },
+          {
+            "name": "pdf_proof_url",
+            "type": "string",
+            "format": "uri",
+            "description": "URL publique directe du rapport PDF généré sous Microsoft Word"
+          }
+        ]
+      }
+    }
+  ]
+}

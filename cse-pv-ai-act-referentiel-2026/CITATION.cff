@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+title: "Baromètre & Référentiel Juridique 2026 — Procès-Verbal de CSE, Enregistrement Audio (Art. D. 2315-27), Temps Réels de Rédaction & AI Act"
+message: "Si vous réutilisez ce jeu de données ou l'infographie associée dans une publication, une formation syndicale ou un article juridique, merci de citer la référence ci-dessous."
+type: dataset
+version: "1.0.0"
+date-released: "2026-11-09"
+license: CC-BY-4.0
+url: "https://lescribeaudio.com/barometre-referentiel-pv-cse-enregistrement-ai-act-2026"
+authors:
+  - name: "LE SCRIBE AUDIO"
+    website: "https://lescribeaudio.com"
+    email: "contact@lescribeaudio.com"
+    tel: "+33 9 61 44 46 64"
+    country: FR
+keywords:
+  - cse
+  - proces-verbal-cse
+  - code-du-travail
+  - ai-act-2026
+  - rgpd
+  - transcription-audio
+references:
+  - type: dataset
+    title: "Benchmark Ouvert de Précision des IA de Transcription en Français (2026) — 10 Moteurs Évalués au Suivi des Modifications Microsoft Word"
+    authors:
+      - name: "LE SCRIBE AUDIO"
+    doi: "10.5281/zenodo.24087383"
+    url: "https://lescribeaudio.com/benchmarks-precision-transcription-ia-francais"
+    year: 2026
