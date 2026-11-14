@@ -1,7 +1,9 @@
 {
   "dataset_id": "french-transcription-benchmark-2026",
-  "version": "1.0.0",
-  "publication_date": "2026-10-31",
+  "version": "1.1.0",
+  "publication_date": "2026-11-14",
+  "doi": "10.5281/zenodo.24215193",
+  "concept_doi": "10.5281/zenodo.24087382",
   "publisher": {
     "organization": "LE SCRIBE AUDIO",
     "location": "Le Rheu / Rennes, France",
@@ -26,6 +28,43 @@
       "storage": "France — OVHcloud (chiffrement AES-256 au repos, TLS 1.3 en transit, suppression définitive en 1 clic)",
       "ai_inference": "Google Cloud Vertex AI (en région Europe) sans conservation ni entraînement sur les données (Zero Data Retention)"
     },
+    "inference_hyperparameters": {
+      "whisper_local_noscribe_macwhisper": {
+        "model": "Whisper large-v3",
+        "compute_precision": "float16 (Apple Silicon MPS / GPU, sans quantification int8)",
+        "language": "fr (forcée explicitement, sans auto-detect par segment)",
+        "beam_size": 5,
+        "temperature_schedule": "0.0 avec repli progressif standard (0.2, 0.4, 0.6, 0.8, 1.0)",
+        "condition_on_previous_text": true,
+        "no_speech_threshold": 0.6,
+        "logprob_threshold": -1.0,
+        "compression_ratio_threshold": 2.4,
+        "initial_prompt": null,
+        "vad_and_segmentation": "Seuils VAD / silence par défaut de l'application (Silero VAD / WebRTC VAD standard, sans recalibrage dB par fichier)",
+        "diarization": "pyannote.audio 3.1 (nombre d'intervenants en détection automatique sur noScribe v0.8 ; non activée en natif sur MacWhisper standard)"
+      },
+      "whisper_cloud_turboscribe": {
+        "model": "Whisper large-v3 (mode Baleine / précision maximale proposée par l'interface)",
+        "language": "fr",
+        "diarization": "enabled",
+        "post_editing": "none (sortie brute exportée directement)"
+      },
+      "proprietary_asr_engines": {
+        "engines": "Gladia, Happy Scribe, ElevenLabs Scribe v2, Sonix, Speechmatics Ursa ASR, AmberScript, Microsoft Word 365 (Azure Speech)",
+        "language": "fr-FR",
+        "automatic_punctuation": true,
+        "diarization": "enabled",
+        "custom_vocabulary_injected": false
+      },
+      "le_scribe_audio_2pass": {
+        "architecture": "Sequential 2-pass multimodal inference (Google Cloud Vertex AI en région Europe, Zero Data Retention)",
+        "chunk_duration_minutes": 20,
+        "chunk_overlap_seconds": 5,
+        "mode": "Verbatim (mot à mot intégral)",
+        "custom_vocabulary_injected": false
+      }
+    },
+    "reproducibility_script": "https://lescribeaudio.com/docs/benchmark/evaluate_benchmark_reproducibility.py",
     "total_pdf_proofs_published": 60
   },
   "corpora": {
@@ -258,89 +297,6 @@
       "error_ratio_vs_leader": 3.21,
       "observations": "Confusions d'homophones (et maillage au lieu d'émaillage) et découpage haché des tours de parole.",
       "pdf_proof_url": "https://lescribeaudio.com/docs/benchmark/comparatif-entretien-cnrs-microsoft-word-151-revisions.pdf"
-    }
-  ],
-  "benchmark_field_situations": [
-    {
-      "software": "Le Scribe Audio (Référence Régie)",
-      "engine_architecture": "IA multimodale 2 passes (Google Cloud Vertex AI Europe)",
-      "pdf_proofs": {
-        "entretien": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-1-Transcription-auto-Entretien-audio-regie.pdf",
-        "reunion": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-1-Transcription-auto-Reunion-audio-regie.pdf",
-        "conference": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-1-Transcription-auto-Conference-audio-regie.pdf"
-      }
-    },
-    {
-      "software": "Happy Scribe",
-      "engine_architecture": "Moteur ASR propriétaire",
-      "pdf_proofs": {
-        "entretien": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-Happyscribe-Entretien-audio.pdf",
-        "reunion": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-Happyscribe-Reunion-audio.pdf",
-        "conference": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-Happyscribe-Conference-audio.pdf"
-      }
-    },
-    {
-      "software": "TurboScribe",
-      "engine_architecture": "OpenAI Whisper Large v3",
-      "pdf_proofs": {
-        "entretien": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-Turboscribe-Entretien-audio.pdf",
-        "reunion": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-Turboscribe-Reunion-audio.pdf",
-        "conference": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-Turboscribe-Conference-audio.pdf"
-      }
-    },
-    {
-      "software": "noScribe (Whisper)",
-      "engine_architecture": "OpenAI Whisper Large v3",
-      "pdf_proofs": {
-        "entretien": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-Noscribe-Entretien-audio.pdf",
-        "reunion": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-Noscribe-Reunion-audio.pdf",
-        "conference": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-Noscribe-Conference-audio.pdf"
-      }
-    },
-    {
-      "software": "MacWhisper",
-      "engine_architecture": "Whisper Large v3 (Local)",
-      "pdf_proofs": {
-        "entretien": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-MacWhisper-Entretien-audio.pdf",
-        "reunion": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-MacWhisper-Reunion-audio.pdf",
-        "conference": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-MacWhisper-Conference-audio.pdf"
-      }
-    },
-    {
-      "software": "ElevenLabs Scribe",
-      "engine_architecture": "Scribe v2",
-      "pdf_proofs": {
-        "entretien": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-Elevenlabs-Entretien-audio.pdf",
-        "reunion": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-Elevenlabs-Reunion-audio.pdf",
-        "conference": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-Elevenlabs-Conference-audio.pdf"
-      }
-    },
-    {
-      "software": "Sonix",
-      "engine_architecture": "Moteur ASR propriétaire",
-      "pdf_proofs": {
-        "entretien": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-Sonix-Entretien-audio.pdf",
-        "reunion": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-Sonix-Reunion-audio.pdf",
-        "conference": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-Sonix-Conference-audio.pdf"
-      }
-    },
-    {
-      "software": "Speechmatics",
-      "engine_architecture": "Ursa ASR",
-      "pdf_proofs": {
-        "entretien": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-Speechmatics-Entretien-audio.pdf",
-        "reunion": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-Speechmatics-Reunion-audio.pdf",
-        "conference": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-Speechmatics-Conference-audio.pdf"
-      }
-    },
-    {
-      "software": "AmberScript",
-      "engine_architecture": "Moteur ASR propriétaire",
-      "pdf_proofs": {
-        "entretien": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-Amberscript-Entretien-audio.pdf",
-        "reunion": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-Amberscript-Reunion-audio.pdf",
-        "conference": "https://lescribeaudio.com/docs/benchmark/Comparatif-correction-Amberscript-Conference-audio.pdf"
-      }
     }
   ],
   "reference_links": [
