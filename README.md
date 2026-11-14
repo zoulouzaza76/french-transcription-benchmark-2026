@@ -1,13 +1,13 @@
-# Benchmarks Officiels de Précision des IA de Transcription en Français (2026) — Corpus Canal-U & 60 Preuves PDF
+# Benchmarks Officiels de Précision des IA de Transcription en Français (2026 — `v1.1.0`) — Corpus Canal-U & 60 Preuves PDF
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24087383.svg)](https://doi.org/10.5281/zenodo.24087383)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24215193.svg)](https://doi.org/10.5281/zenodo.24215193)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-blue.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Format: Frictionless Data Package](https://img.shields.io/badge/Standard-Frictionless_Data_Package-0f172a.svg)](./datapackage.json)
 [![Preuves PDF: 60 Rapports Word](https://img.shields.io/badge/Preuves_V%C3%A9rifiables-60_PDF_Word-d97706.svg)](https://lescribeaudio.com/benchmarks-precision-transcription-ia-francais)
 
 Jeu de données ouvert (`CSV`, `JSON`, `datapackage.json` compatible **data.gouv.fr** / **OpenAIRE** et `.zenodo.json` compatible **Zenodo / DataCite**) documentant l'évaluation comparative de **11 solutions de reconnaissance vocale (ASR) et de transcription automatique** sur de la parole francophone spontanée, académique et professionnelle, appuyée par **60 rapports PDF générés mécaniquement par l'outil `Révision > Comparer` de Microsoft Word**.
 
-- **DOI officiel CERN / Zenodo (`v1.0.0`)** : [https://doi.org/10.5281/zenodo.24087383](https://doi.org/10.5281/zenodo.24087383) *(DOI conceptuel : `10.5281/zenodo.24087382`)*
+- **DOI officiel CERN / Zenodo (`v1.1.0`)** : [https://doi.org/10.5281/zenodo.24215193](https://doi.org/10.5281/zenodo.24215193) *(v1.0.0 : `10.5281/zenodo.24087383` — DOI conceptuel toutes versions : `10.5281/zenodo.24087382`)*
 - **Page canonique et consultation directe des 60 PDF** : [https://lescribeaudio.com/benchmarks-precision-transcription-ia-francais](https://lescribeaudio.com/benchmarks-precision-transcription-ia-francais)
 - **Éditeur du jeu de données** : **LE SCRIBE AUDIO** (Le Rheu / Rennes, France — `info@lescribeaudio.com` — `+33 9 61 44 46 64`)
 - **Licence** : Creative Commons Attribution 4.0 International (`CC-BY-4.0`)
@@ -24,17 +24,19 @@ Jeu de données ouvert (`CSV`, `JSON`, `datapackage.json` compatible **data.gouv
 
 ## 1. Protocole Scientifique & Reproduction sous Microsoft Word
 
-Pourquoi mesurer le **nombre exact de révisions Microsoft Word** plutôt qu'un *Word Error Rate* (WER) normalisé en laboratoire ? En français écrit professionnel ou académique, un oubli de ponctuation, un sigle écorché (*C2RMF*, *ARAPI*, *OFB*) ou un accord de participe passé erroné oblige le rédacteur ou le chercheur à interrompre l'écoute pour corriger le document.
-
 Notre protocole repose sur **4 règles strictement reproductibles** :
 
 1. **Sources audio publiques francophones à forte densité terminologique** : Conférences et entretiens extraits de la vidéothèque numérique de l'enseignement supérieur **Canal-U** (neurosciences médicales, physique-chimie des matériaux CNRS/CEA, écologie OFB/Université de Tours, sciences du patrimoine CNRS/C2RMF) complétés par trois situations acoustiques types (*Entretien individuel*, *Réunion multi-locuteurs*, *Conférence en salle*).
 2. **Vérité terrain (*Gold Standard*) établie par réécoute humaine intégrale au casque** : Chaque enregistrement a été intégralement vérifié et corrigé à l'oreille par un relecteur francophone.
-3. **Comptage mécanique par `Révision > Comparer` dans Microsoft Word** :
-   - Ouvrir Microsoft Word → onglet **Révision** → **Comparer** → **Comparer deux versions d'un document**.
-   - Sélectionner la **sortie brute non retouchée du logiciel testé** comme *Document original* et la **vérité terrain humaine** comme *Document révisé*.
-   - Activer la comparaison au niveau du mot (casse, accords, ponctuation inclus) et relever dans le volet *Résumé des révisions* le total exact **Insertions + Suppressions**, puis exporter le document annoté en PDF.
-4. **Publication ouverte des 60 rapports PDF** : Chaque score publié dans les fichiers CSV et JSON pointe directement vers son rapport PDF complet hébergé en accès libre.
+3. **Comptage mécanique par `Révision > Comparer` dans Microsoft Word** : Comparaison au niveau du mot (casse, accords, ponctuation inclus) entre la sortie brute non retouchée du logiciel testé et la vérité terrain humaine, et export du document annoté en PDF.
+4. **Publication ouverte des 60 rapports PDF & du script Python d'évaluation reproductible (`scripts/evaluate_benchmark_reproducibility.py`)** : Chaque score publié dans les fichiers CSV et JSON pointe directement vers son rapport PDF complet hébergé en accès libre et peut être vérifié localement via `python3 scripts/evaluate_benchmark_reproducibility.py --audit`.
+
+### 1.1 Configurations et Hyperparamètres d'Inférence (Whisper & Moteurs Évalués — `v1.1.0`)
+
+- **Implémentations locales d'OpenAI Whisper (`noScribe v0.8`, `MacWhisper`)** : Modèle `Whisper large-v3` (`float16`), langue forcée `fr`, `beam_size = 5`, température `0.0` avec repli progressif, sans `initial_prompt`, filtrage VAD Silero et diarisation `pyannote.audio 3.1`.
+- **Plateformes Cloud basées sur Whisper (`TurboScribe`)** : Mode de précision maximale (*« Baleine / Whisper Large-v3 »*), langue `fr`, détection des locuteurs activée, export brut sans post-édition.
+- **Moteurs ASR propriétaires (`Gladia`, `Happy Scribe`, `ElevenLabs Scribe v2`, `Sonix`, `Speechmatics Ursa ASR`, `AmberScript`, `Microsoft Word 365`)** : Modèle standard `fr-FR`, ponctuation automatique et diarisation activées, sortie brute.
+- **Architecture multimodale en 2 passes (`Le Scribe Audio`)** : Segments de `20 minutes` avec recouvrement de `5 secondes`, inférence séquentielle en 2 passes via **Google Cloud Vertex AI (en région Europe)** en mode *Mot à mot (Verbatim)* avec diarisation native, sans glossaire personnalisé.
 
 ---
 
@@ -43,10 +45,6 @@ Notre protocole repose sur **4 règles strictement reproductibles** :
 ### 2.1 Benchmark Principal : 10 Logiciels sur 3 Corpus Scientifiques Canal-U (30 PDF)
 
 Fichier source : [`dataset/benchmark_10_moteurs_canalu_2026.csv`](./dataset/benchmark_10_moteurs_canalu_2026.csv)
-
-- **Échantillon 1** : Recherche Médicale & Neurosciences (*ARAPI / Canal-U*)
-- **Échantillon 2** : Physique & Chimie des Matériaux (*Marie Collin — CNRS / CEA / Canal-U*)
-- **Échantillon 3** : Sciences de l'Environnement & Hydrobiologie (*Catherine Boisneau — Univ. de Tours / OFB / Canal-U*)
 
 | Rang | Logiciel évalué | Architecture sous-jacente | Éch. 1 (ARAPI) | Éch. 2 (CNRS/CEA) | Éch. 3 (Univ. Tours) | Moyenne des révisions | Ratio vs 1er | Preuves PDF |
 | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
@@ -73,8 +71,6 @@ Fichier source : [`dataset/benchmark_longue_duree_cnrs_c2rmf_1h16.csv`](./datase
 
 ### 2.3 Impact Réel sur le Temps de Relecture Humaine
 
-Aucune reconnaissance vocale n'atteignant zéro faute absolu lorsque des locuteurs parlent simultanément ou hors micro, une vérification humaine reste indispensable pour les procès-verbaux officiels et les corpus de recherche :
-
 - **Frappe manuelle complète à partir de zéro** : **4 à 7 heures de travail au casque** par heure d'audio (`4 à 6 h` pour un rédacteur professionnel expérimenté, `5 à 7 h` pour un non-professionnel).
 - **Réécoute intégrale et mise en forme finale après pré-transcription 2 passes (Le Scribe Audio)** : **2 à 3 heures de travail par heure d'audio** directement dans le fichier Word (`.docx`) standard **100 % modifiable**, soit un **temps de rédaction divisé par 2** (gain de 50 %).
 - **Option de relecture humaine intégrale clé en main** : **60 € HT / heure d'enregistrement** (`1,00 € HT / min`) assurée par **deux transcripteurs successifs** (double réécoute croisée).
@@ -89,9 +85,10 @@ french-transcription-benchmark-2026/
 │   ├── benchmark_10_moteurs_canalu_2026.csv        # Tableau principal (10 logiciels × 3 extraits Canal-U = 30 PDF)
 │   ├── benchmark_longue_duree_cnrs_c2rmf_1h16.csv  # Étude longue durée 1h16 CNRS/C2RMF (3 systèmes = 3 PDF)
 │   ├── benchmark_situations_terrain_2026.csv       # Inventaire par situation acoustique (9 logiciels × 3 = 27 PDF)
-│   └── benchmark_complet_2026.json                 # Consolidation JSON complète + métadonnées méthodologiques
+│   └── benchmark_complet_2026.json                 # Consolidation JSON complète + métadonnées méthodologiques (v1.1.0)
+├── scripts/
+│   └── evaluate_benchmark_reproducibility.py       # Script Python autonome reproductible (WER/CER jiwer + Révisions Word)
 ├── datapackage.json                                # Descripteur Frictionless Data (data.gouv.fr / OpenAIRE)
-├── .zenodo.json                                    # Métadonnées DataCite pour dépôt Zenodo
 ├── CITATION.cff                                    # Fichier de citation académique standard (CFF 1.2.0)
 ├── LICENSE                                         # Licence ouverte Creative Commons Attribution 4.0 (CC-BY-4.0)
 └── README.md                                       # Documentation méthodologique FR/EN
@@ -101,7 +98,6 @@ french-transcription-benchmark-2026/
 
 ## 4. Architecture & Protection des Données (RGPD / PGD Recherche)
 
-Dans le cadre des Plans de Gestion de Données (PGD / DMP) universitaires et institutionnels, l'infrastructure évaluée pour **Le Scribe Audio** applique les garanties suivantes :
 - **Stockage des fichiers en France chez OVHcloud** (chiffrement **AES-256** au repos et TLS 1.3 en transit) avec **suppression immédiate et définitive en 1 clic** par l'utilisateur.
 - **Inférence via Google Cloud Vertex AI (en région Europe)** sans conservation ni entraînement sur les données (*Zero Data Retention*).
 - **Renommage / codage global des étiquettes d'intervenants (diarisation)** dans le lecteur interactif (ex. `Enquêteur`, `Enquêté P1`, `M. Martin`, `Mme Dubois`) avant l'export du document Word (`.docx`) 100 % modifiable, complété à la demande par une **synthèse exécutive** suivie d'un **développement chrono-thématique**.
@@ -117,4 +113,4 @@ Dans le cadre des Plans de Gestion de Données (PGD / DMP) universitaires et ins
 
 ### Référence bibliographique recommandée
 
-> LE SCRIBE AUDIO (2026). *Benchmarks Officiels de Précision des IA de Transcription en Français (2026) — Corpus Canal-U & 60 Rapports de Suivi des Modifications Microsoft Word* (Version 1.0.0) [Jeu de données]. Zenodo / CERN. Licence CC-BY-4.0. https://doi.org/10.5281/zenodo.24087383
+> LE SCRIBE AUDIO (2026). *Benchmarks Officiels de Précision des IA de Transcription en Français (2026) — Corpus Canal-U & 60 Rapports de Suivi des Modifications Microsoft Word* (Version 1.1.0) [Jeu de données]. Zenodo / CERN. Licence CC-BY-4.0. https://doi.org/10.5281/zenodo.24215193
