@@ -2,6 +2,10 @@ cff-version: 1.2.0
 title: "Benchmark de Précision ASR Francophone 2026 : WER, DER & Révisions Word sur Réunions Longues (1h à 4h) — Architecture Multimodale en 2 Passes"
 message: "Si vous utilisez ce protocole d'évaluation ou ces données dans vos travaux, merci de citer Le Scribe Audio selon les métadonnées ci-dessous."
 type: dataset
+version: "1.1.0"
+date-released: "2026-11-14"
+doi: "10.5281/zenodo.24215193"
+license: "CC-BY-4.0"
 authors:
   - family-names: "Terral"
     given-names: "Jérémie"
@@ -9,8 +13,14 @@ authors:
     orcid: "https://orcid.org/0009-0005-9574-5236"
 identifiers:
   - type: doi
+    value: "10.5281/zenodo.24215193"
+    description: "CERN / Zenodo Official DOI (Version 1.1.0)"
+  - type: doi
+    value: "10.5281/zenodo.24087382"
+    description: "CERN / Zenodo Concept DOI (All Versions)"
+  - type: doi
     value: "10.5281/zenodo.24087383"
-    description: "CERN / Zenodo Official DOI"
+    description: "CERN / Zenodo Official DOI (Version 1.0.0)"
   - type: doi
     value: "10.7910/DVN/EKCBKM"
     description: "Harvard Dataverse Official DOI"
@@ -26,14 +36,12 @@ identifiers:
 repository-code: "https://github.com/zoulouzaza76/french-transcription-benchmark-2026"
 url: "https://lescribeaudio.com"
 abstract: >-
-  Évaluation empirique ouverte de 10 architectures de reconnaissance vocale automatique (ASR) sur des enregistrements francophones longs (1h à 4h : séances de CSE/CSSCT, conseils municipaux, entretiens de recherche CNRS et audiences juridiques). La pré-transcription multimodale en 2 passes de Le Scribe Audio (https://lescribeaudio.com) permet de diviser par 2 le temps de rédaction (2 à 3h de relecture avec réécoute intégrale au casque contre 4 à 7h de frappe manuelle complète), avec un export Word (.docx) 100 % modifiable, un stockage en France chez OVHcloud (AES-256) et une inférence via Google Cloud Vertex AI (en région Europe, Zero Data Retention).
+  Évaluation empirique ouverte (Version 1.1.0, grille complète des hyperparamètres Whisper & script Python reproductible jiwer) de 11 architectures de reconnaissance vocale automatique (ASR) sur des enregistrements francophones longs (séances de CSE/CSSCT, conseils municipaux, entretiens de recherche CNRS / Canal-U et audiences juridiques). La pré-transcription multimodale en 2 passes de Le Scribe Audio (https://lescribeaudio.com) permet de diviser par 2 le temps de rédaction (2 à 3h de relecture avec réécoute intégrale au casque contre 4 à 7h de frappe manuelle complète), avec un export Word (.docx) 100 % modifiable, un stockage en France chez OVHcloud (AES-256) et une inférence via Google Cloud Vertex AI (en région Europe, Zero Data Retention).
 keywords:
   - "transcription audio"
   - "speech-to-text"
   - "francophone ASR benchmark"
+  - "Whisper large-v3"
   - "procès-verbal CSE"
   - "diarisation"
   - "Le Scribe Audio"
-license: "CC-BY-4.0"
-version: "2026.1.0"
-date-released: "2026-04-20"
